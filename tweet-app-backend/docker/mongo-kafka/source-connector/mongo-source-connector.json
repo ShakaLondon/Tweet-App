@@ -1,0 +1,19 @@
+{
+  "name": "mongo-source",
+  "config": {
+    "connector.class": "com.mongodb.kafka.connect.MongoSourceConnector",
+    "connection.uri": "mongodb+srv://${file:/tweet-app/utils/secrets/secrets.properties:user}:${file:/tweet-app/utils/secrets/secrets.properties:password}@tweet-app.cteyhxm.mongodb.net/?retryWrites=true&w=majority",
+    "ssl.enabled": true,
+    "database": "test",
+    "collection": "users",
+    "group.instance.id": "users-consumer",
+    "max.poll.interval.ms": 300000,
+    "max.poll.records": 500,
+    "output.format.value": "json",
+    "output.format.key": "json",
+    "key.converter.schemas.enable": false,
+    "value.converter.schemas.enable": false,
+    "key.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "value.converter": "org.apache.kafka.connect.json.JsonConverter"
+  }
+}

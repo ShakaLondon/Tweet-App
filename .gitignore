@@ -2,3 +2,4 @@
 /tweet-app-frontend/build/
 
 /tweet-app-backend/node_modules/
+/tweet-app-backend/docker/secrets
