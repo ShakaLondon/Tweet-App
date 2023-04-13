@@ -1,0 +1,605 @@
+.App {
+  /* text-align: center; */
+  max-width: 100vw;
+  max-height: 100vh;
+  height: 100vh;
+}
+
+a {
+  color: #4B5320;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #4B5320;
+  text-decoration: none;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none !important;
+}
+
+.form-control {
+  box-shadow: none !important;
+}
+
+input,
+select,
+textarea,
+button {
+    outline: none !important;
+}
+
+/* Page Setup */
+
+@media only screen and (min-width: 1000px) {
+.page-width {
+  width: 80%;
+}
+
+/* .min-width-left {
+  width: 15vw;
+} */
+
+}
+
+@media only screen and (max-width: 900px){
+
+.min-width-center {
+  width: 85vw;
+}
+
+.min-width-left {
+  width: 15vw;
+}
+
+}
+
+@media only screen and (min-width: 900px) and (max-width: 1000px) {
+
+  .min-width-center {
+    width: 75vw;
+  }
+  
+  .min-width-left {
+    width: 25vw;
+  }
+  
+  }
+/* Extra small devices (phones, 600px and down)
+@media only screen and (max-width: 600px) {
+  .page-width {
+    width: 80%;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+/* @media only screen and (min-width: 600px) {
+  .page-width {
+    width: 100%;
+  }
+} */ 
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (max-width: 1200px) {
+  .no-padding-small-screen {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .page-width {
+    width: 100%;
+  }
+    
+  .no-padding-small-screen {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .side-list-item {
+    justify-content: center !important;
+    border-radius: 50%;
+  }
+
+  .side-list-item > button {
+    width: 3rem;
+  }
+}
+
+
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .page-width {
+    width: 100%;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .page-width {
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .page-width {
+    width: 80%;
+  }
+}
+
+.full-height {
+  height: 100%;
+}
+
+.full-view-height {
+  height: 100vh;
+}
+
+.no-border {
+  border: none;
+}
+
+.no-border-radius {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.section-line {
+  border-left: 1px solid #4b532035;
+  border-right: 1px solid #4b532035;
+}
+
+/* Search Bar */
+
+.search-rounded-pill-left {
+  border-bottom-left-radius:40px;
+ -moz-border-radius-bottomleft:40px;
+ -webkit-border-bottom-left-radius:40px;
+
+  -moz-border-radius-topleft:40px;
+  -webkit-border-top-left-radius:40px;
+  border-top-left-radius:40px;
+
+  /* Colours */
+  background-color: #ffffff;
+  border-right: none;
+  border: 0.5px solid #4B5320;
+
+  padding: 1rem 1.5rem 1rem;
+}
+
+.search-rounded-pill-right {
+  border-bottom-right-radius:40px;
+ -moz-border-radius-bottomright:40px;
+ -webkit-border-bottom-right-radius:40px;
+
+  -moz-border-radius-topright:40px;
+  -webkit-border-top-right-radius:40px;
+  border-top-right-radius:40px;
+
+  /* Colours */
+  background-color: #ffffff;
+  border-left: none;
+  border: 0.5px solid #4B5320;
+
+  padding: 1rem 1.5rem 1rem;
+}
+
+.search-form-input {
+  border-left: none;
+  border-right: none;
+  border-top: 0.5px solid #4B5320;
+  border-bottom: 0.5px solid #4B5320;
+}
+
+.search-form-input:focus {
+  border-left: none;
+  border-right: none;
+  border-top: 0.5px solid #4B5320;
+  border-bottom: 0.5px solid #4B5320;
+}
+
+.search-bar {
+  width: 100%;
+  min-width: 200px;
+  height: 3rem;
+}
+
+/* Home Tabs */
+
+/* .underline-tab {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+} */
+/* .home-tab {
+  display: inline-block;
+} */
+
+#home-tabs-list {
+  border-bottom: 1px solid #4b532035;
+}
+
+.home-tab:hover, .home-tab:focus {
+  background-color: #4b532067;
+}
+
+.home-tab-link {
+  /* border-color: #4B5320;
+  border-bottom: 3px solid #4B5320; */
+  /* margin-left: 40%;
+  margin-right: 40%; */
+  font-size: 1rem;
+  display: inline-block;
+  width: auto;
+}
+
+.home-tab:hover .home-tab-button .home-tab-link {
+  border-color: #4B5320;
+  border-bottom: 3px solid #4B5320;
+}
+
+.home-tab.active .home-tab-button .home-tab-link {
+  border-color: #4B5320;
+  border-bottom: 3px solid #4B5320;
+}
+
+.home-tab > * {
+  pointer-events: none;
+}
+
+/* .home-tab-link:hover {
+  border-color: #4B5320;
+  border-bottom: 3px solid #4B5320;
+} */
+
+.nav-tabs .nav-link {
+  border: none;
+}
+
+.nav-tabs .nav-link:focus, .nav-tabs .nav-link:hover {
+  border: none !important;
+}
+
+.nav-tabs {
+  --bs-nav-tabs-border-radius: none;
+  --bs-nav-tabs-link-hover-border-color: none;
+  --bs-nav-tabs-link-hover-border: none;
+  --bs-nav-tabs-link-active-color: none;
+  --bs-nav-tabs-border-color: none;
+  --bs-nav-tabs-link-active-border-color: #fff #fff #dee2e6;
+  --bs-nav-tabs-link-active-border-radius: none;
+  --bs-nav-tabs-link-hover-border-width: none;
+  --bs-nav-tabs-link-hover-border: none !important;
+}
+
+.nav-tabs .active {
+  border: var(--bs-nav-tabs-border-width) solid #4B5320;
+}
+
+/* Side Nav */
+
+/* .left-panel {
+  min-width: 20vw;
+} */
+
+@media only screen and (max-width: 1200px) {
+.left-panel {
+  /* width: 300px; */
+  margin-right: inherit;
+}
+}
+
+@media only screen and (min-width: 1500px) {
+  .left-panel {
+    width: 300px;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .left-panel {
+    width: 300px;
+  }
+}
+
+
+@media only screen and (min-width: 1400px) {
+  .left-panel {
+    width: 250px;
+  }
+}
+
+@media only screen and (min-width: 900px) {
+  .left-panel {
+    width: 180px;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .left-panel {
+    margin-left: 0.2rem;
+  }
+}
+
+@media only screen and (min-width: 1500px) {
+  .left-panel {
+    margin-left: 3rem;
+  }
+}
+
+  @media only screen and (max-width: 900px) and (min-width: 768px) {
+    .left-panel {
+      width: 100px;
+    }
+  }
+
+  @media only screen and (min-width: 1000px) {
+    .left-panel {
+      width: 200px;
+    }
+  }
+
+.brand-button {
+  background: none;
+  border: none;
+  color: #4B5320;
+  width: 3rem;
+  height: 3rem;
+}
+
+.brand-button:hover {
+  background: #4b532070;
+  border: none;
+  color: #fff;
+}
+
+.brand-button:active, .btn:first-child:active {
+  background: #4b532070;
+  border: none;
+  color: #fff;
+}
+
+.side-nav-title {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 1.5rem;
+}
+
+@media only screen and (max-width: 900px) {
+  .side-nav-title {
+    display: none;
+  }
+}
+
+#twetter-icon {
+  font-size: 1.5rem;
+  /* color: #4B5320; */
+}
+
+.side-list-icon {
+  font-size: 1.5rem;
+  /* color: #4B5320; */
+}
+
+.side-list-btn {
+height: 3rem;
+/* width: 3rem; */
+color: #4B5320;
+border: none;
+background: none;
+}
+
+.side-list-btn:hover {
+  background: #4b532070;
+  border: none;
+  color: #fff;
+}
+
+.side-list-btn:active, .btn:first-child:active {
+  background: #4b532070;
+  border: none;
+  color: #fff;
+}
+
+/* Navbar */
+
+.navBar-height {
+  max-height: 4rem;
+  height: 4rem;
+  padding: none !important;
+}
+
+/* Sign Up Box */
+
+.right-panel {
+    width: 300px;
+    margin-left: inherit;
+  }
+
+.sign-up-btn {
+  height: 2.5rem;
+  color: #4B5320;
+  border: 1px solid #4B5320;
+  background: none;
+  width: 100%;
+  }
+  
+  .sign-up-btn:hover {
+    background: #4b532070;
+    border: none;
+    color: #fff !important;
+  }
+  
+  .sign-up-btn:active, .btn:active {
+    background: #4b532070 !important;
+    border: none !important;
+    background-color: #4b532070;
+    border-color: none;
+    color: #fff !important;
+  }
+
+  .sign-up-icon {
+    font-size: 1rem;
+    /* color: #4B5320; */
+  }
+
+  .fa-apple.sign-up-icon {
+    font-size: 1.5rem;
+  } 
+
+  .sign-up-title {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 1.2rem;
+    color: initial;
+  }
+
+  /* #sign-up-card {
+    width: 300px;
+  } */
+
+  @media only screen and (min-width: 1400px) {
+    .right-panel {
+      width: 350px;
+    }
+  }
+
+  @media only screen and (max-width: 1000px) {
+    #sign-up-card {
+      display: none;
+    }
+
+    /* .right-panel {
+      width: 180px;
+    } */
+  }
+
+  @media only screen and (max-width: 1200px) {
+    .sign-up-title {
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      font-size: 1rem;
+    }
+
+    .sign-up-icon {
+      font-size: 1rem;
+      color: #4B5320 !important;
+    }
+
+    .sign-up-icon .fa-apple {
+      font-size: 1.2rem;
+    } 
+
+    .right-panel {
+      width: 250px;
+    }
+  }
+
+  /* Registration App */
+
+  .twetter-register-icon {
+    font-size: 3rem;
+    color: #4B5320;
+  }
+
+  .register-container {
+    width: 35%;
+    min-width: 350px;
+  }
+
+  .tweeter-title {
+    color: #4B5320;
+  }
+
+  .register-btn {
+    /* height: 2.5rem; */
+    color: #fff;
+    border: none;
+    background: #4b532070;
+    width: 100%;
+    }
+    
+    .register-btn:hover {
+      background: #fff;
+      border: none;
+      color: #4B5320;
+      border: 1px solid #4B5320;
+    }
+    
+    .register-btn:active, .btn:active {
+      background: #4b532070 !important;
+      border: 1px solid #4B5320;
+      background-color: #4b532070;
+      border-color: none;
+      color: #4B5320;
+    }
+
+/* Profile Page */
+
+@media only screen and (max-width: 1000px) {
+.hide-search-right {
+  display: none !important;
+}
+}
+
+#profile-card {
+  border: none !important;
+}
+
+#profile-image {
+  width: 10rem;
+  height: 10rem;
+  position: relative;
+  bottom: 5rem;
+  left: 1.5rem;
+  border: 0.2rem solid #4B5320;
+}
+
+#profile-name-container {
+  position: relative;
+  bottom: 3rem !important;
+}
+
+.profile-card-padding {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+#header-image {
+  border-bottom: 1px solid #4b532035;
+}
+
+.profile-title {
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+#profile-card-info {
+  position: relative;
+  bottom: 1.3rem !important;
+}
+
+#follow-card-info {
+  position: relative;
+  bottom: 1.2rem !important;
+}
+
+/* Tweet Box */
+
+.send-tweet-btn {
+    height: 2.5rem;
+    color: #4B5320;
+    border: 1px solid #4B5320;
+    background: none;
+    width: 8rem;
+}
+
+.send-tweet-title {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 1rem;
+}
