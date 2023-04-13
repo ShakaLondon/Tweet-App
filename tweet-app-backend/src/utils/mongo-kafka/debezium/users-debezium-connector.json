@@ -1,0 +1,34 @@
+{
+  "name": "users-debezium", 
+  "config": {
+    "connector.class": "io.debezium.connector.mongodb.MongoDbConnector", 
+    "mongodb.user": "${file:/tweet-app/utils/secrets/secrets.properties:user}",
+    "mongodb.password": "${file:/tweet-app/utils/secrets/secrets.properties:password}",
+    "mongodb.connection.string": "mongodb+srv://${file:/tweet-app/utils/secrets/secrets.properties:user}:${file:/tweet-app/utils/secrets/secrets.properties:password}@tweet-app.cteyhxm.mongodb.net/?retryWrites=true&w=majority", 
+    "mongodb.connection.uri": "mongodb+srv://${file:/tweet-app/utils/secrets/secrets.properties:user}:${file:/tweet-app/utils/secrets/secrets.properties:password}@tweet-app.cteyhxm.mongodb.net/?retryWrites=true&w=majority",
+    "mongodb.ssl.enabled": true,
+    "mongodb.members.auto.discover": true,
+    "database.include.list": "test",
+    "collection.include.list": "test.users",
+    "topic.creation.default.cleanup.policy": "compact",
+    "document.id.strategy": "com.mongodb.kafka.connect.sink.processor.id.strategy.BsonOidStrategy",
+    "topic.prefix": "tweet-app",
+
+    "internal.key.converter":"org.apache.kafka.connect.json.JsonConverter",
+    "internal.value.converter":"org.apache.kafka.connect.json.JsonConverter",
+    "internal.key.converter.schemas.enable": false,
+    "internal.value.converter.schemas.enable": false,
+
+    "collection.whitelist": "test.users",
+    "key.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+
+    "key.converter.schemas.enable": false,
+    "value.converter.schemas.enable": false,
+    "topic.creation.default.replication.factor": 1,  
+    "topic.creation.default.partitions": 10,   
+    "transforms": "unwrap",
+    "transforms.unwrap.collection.expand.json.payload": true,
+    "transforms.unwrap.type":"io.debezium.connector.mongodb.transforms.ExtractNewDocumentState"
+  }
+}
