@@ -1,0 +1,185 @@
+version: '3.8'
+
+services: 
+    app:
+        build: 
+            context: ../tweet-app-backend
+            dockerfile: Dockerfile
+        restart: unless-stopped
+        env_file: ./.env
+        ports:
+            - 6868:6868
+        environment:
+            - DB_HOST=mongodb
+            - DB_USER=${MONGODB_USER}
+            - DB_PASSWORD=${MONGODB_PASSWORD}
+            - DB_NAME=${MONGODB_DATABASE}
+            - DB_PORT=${MONGODB_DOCKER_PORT}
+        depends_on:
+            - zookeeper
+            - broker
+            - schema-registry
+        networks:
+            - tweet-app-network
+        stdin_open: true
+        tty: true
+        volumes:
+            - ./:/tweet-app/
+
+    frontend-app:
+        build: 
+            context: ../tweet-app-frontend
+            dockerfile: Dockerfile
+        restart: unless-stopped
+        env_file: ./.env
+        depends_on:
+            - zookeeper
+            - broker
+            - schema-registry
+        ports:
+            - 3000:3000
+        networks:
+            - tweet-app-network
+        # environment:
+        #     - DB_HOST=mongodb
+        #     - DB_USER=${MONGODB_USER}
+        #     - DB_PASSWORD=${MONGODB_PASSWORD}
+        #     - DB_NAME=${MONGODB_DATABASE}
+        #     - DB_PORT=${MONGODB_DOCKER_PORT}
+        stdin_open: true
+        tty: true
+        volumes:
+            - ../tweet-app-frontend:/tweet-app-frontend/
+        
+    zookeeper:
+        image: confluentinc/cp-zookeeper:latest
+        hostname: zookeeper
+        container_name: zookeeper
+        networks:
+            - tweet-app-network
+        ports:
+            - 2181:2181
+        environment:
+            ZOOKEEPER_CLIENT_PORT: 2181
+            ZOOKEEPER_TICK_TIME: 2000
+
+    broker:
+        image: confluentinc/cp-kafka:latest
+        hostname: broker
+        container_name: broker
+        ports:
+            - "29092:29092"
+            - "9092:9092"
+            # - 9092:29092
+        depends_on:
+            - zookeeper
+        networks:
+            - tweet-app-network
+        environment:
+            KAFKA_BROKER_ID: 1
+            KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+            KAFKA_LISTENERS: PLAINTEXT://:9092,LISTENER_2://:29092
+            KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://broker:9092,LISTENER_2://localhost:29092
+            KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,LISTENER_2:PLAINTEXT
+            KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+            KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+            KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+            CONFLUENT_SUPPORT_CUSTOMER_ID: "anonymous"
+            KAFKA_DELETE_TOPIC_ENABLE: "true"
+            KAFKA_ADVERTISED_HOST_NAME: ${HOST_IP}
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+        # restart: no
+
+    connect:
+        image: confluentinc/cp-kafka-connect-base:latest
+        build:
+            context: .
+            dockerfile: connect.Dockerfile
+        ports:
+            - 8083:8083
+            - 35000:35000
+        hostname: connect
+        container_name: connect
+        # command: /tweet-app/secrets.sh
+        depends_on:
+            - zookeeper
+            - broker
+            - schema-registry
+        networks:
+            - tweet-app-network
+        environment:
+            KAFKA_JMX_PORT: 35000
+            KAFKA_JMX_HOSTNAME: localhost
+            CONNECT_BOOTSTRAP_SERVERS: http://broker:9092
+            CONNECT_REST_ADVERTISED_HOST_NAME: connect
+            # CONNECT_REST_PORT: 8083
+            CONNECT_GROUP_ID: connect-cluster-group
+            CONNECT_CONFIG_STORAGE_TOPIC: docker-connect-configs
+            CONNECT_CONFIG_STORAGE_REPLICATION_FACTOR: 1
+            # CONNECT_OFFSET_FLUSH_INTERVAL_MS: 10000
+            CONNECT_OFFSET_STORAGE_TOPIC: docker-connect-offsets
+            CONNECT_OFFSET_STORAGE_REPLICATION_FACTOR: 1
+            CONNECT_STATUS_STORAGE_TOPIC: docker-connect-status
+            CONNECT_STATUS_STORAGE_REPLICATION_FACTOR: 1
+            # CONNECT_ZOOKEEPER_CONNECT: "zookeeper:2181"
+            # CONNECT_PLUGIN_PATH: "/usr/share/java,/usr/share/confluent-hub-components"
+            CONNECT_CONNECTIONS_MAX_IDLE_MS: 180000
+            CONNECT_METADATA_MAX_AGE_MS: 180000
+            # CONNECT_AUTO_CREATE_TOPICS_ENABLE: "true"
+            CONNECT_KEY_CONVERTER: "org.apache.kafka.connect.json.JsonConverter"
+            CONNECT_VALUE_CONVERTER: "org.apache.kafka.connect.json.JsonConverter"
+            CONNECT_CONFIG_PROVIDERS: "file"
+            CONNECT_CONFIG_PROVIDERS_FILE_CLASS: org.apache.kafka.common.config.provider.FileConfigProvider
+            CONNECT_MONGODB_USER: ${MONGODB_USER}
+            CONNECT_MONGODB_PASSWORD: ${MONGODB_PASSWORD}
+        volumes:
+            - ./docker:/tweet-app/utils
+            - ../confluent-plugins/dynamic-field/:/usr/local/share/kafka/plugins/
+
+    schema-registry:
+        image: confluentinc/cp-schema-registry:latest
+        hostname: schema-registry
+        container_name: schema-registry
+        env_file: ./.env
+        ports:
+            - 8081:8081
+        depends_on:
+            - broker
+            - zookeeper
+            - rest-proxy
+        networks:
+            - tweet-app-network
+        environment:
+            SCHEMA_REGISTRY_HOST_NAME: schema-registry
+            SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: PLAINTEXT://broker:9092
+            # SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL: "zookeeper:2181"
+            SCHEMA_REGISTRY_LISTENERS: http://schema-registry:8081
+            SCHEMA_REGISTRY_SCHEMA_COMPATIBILITY_LEVEL: "NONE"
+            SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL: zookeeper:2181
+            SCHEMA_REGISTRY_ACCESS_CONTROL_ALLOW_ORIGIN: '*'
+            SCHEMA_REGISTRY_ACCESS_CONTROL_ALLOW_METHODS: 'GET,POST,PUT,OPTIONS'
+        volumes:
+            - ./docker/schema-registry/connect-avro-standalone.properties:/etc/schema-registry/connect-avro-standalone.properties
+
+    rest-proxy:
+        image: confluentinc/cp-kafka-rest:latest
+        depends_on:
+            - zookeeper
+            - broker
+        ports:
+            - 8082:8082
+        networks:
+            - tweet-app-network
+        hostname: rest-proxy
+        container_name: rest-proxy
+        environment:
+            KAFKA_REST_HOST_NAME: rest-proxy
+            KAFKA_REST_BOOTSTRAP_SERVERS: http://broker:9092
+            KAFKA_REST_LISTENERS: http://rest-proxy:8082
+            KAFKA_REST_SCHEMA_REGISTRY_URL: http://schema-registry:8081
+
+networks:
+    tweet-app-network:
+        driver: bridge
+        external: true
