@@ -3,3 +3,7 @@
 
 /tweet-app-backend/node_modules/
 /tweet-app-backend/docker/secrets
+/confluent-plugins/confluentinc-connect-transforms-1.4.3/*
+/confluent-plugins/confluentinc-kafka-connect-json-schema-converter-7.3.3/*
+/confluent-plugins/debezium-debezium-connector-mongodb-2.0.1/*
+/confluent-plugins/mongodb-kafka-connect-mongodb-1.10.0/*
