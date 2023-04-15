@@ -1,7 +1,9 @@
 /tweet-app-frontend/node_modules/
+/tweet-app-frontend/.env
 /tweet-app-frontend/build/
 
 /tweet-app-backend/node_modules/
+/tweet-app-backend/.env
 /tweet-app-backend/docker/secrets
 /confluent-plugins/confluentinc-connect-transforms-1.4.3/*
 /confluent-plugins/confluentinc-kafka-connect-json-schema-converter-7.3.3/*
