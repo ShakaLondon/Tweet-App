@@ -5,6 +5,7 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import bodyParser from "body-parser";
+import swaggerUi from "swagger-ui-express";
 // IMPORT CORS
 import userRouter from "./services/users/index.js";
 import roleRouter from "./services/roles/index.js";
@@ -12,6 +13,7 @@ import tweetsRouter from "./services/tweets/index.js";
 import listEndpoints from "express-list-endpoints";
 // SHOW API ENDPOINTS
 import { catchAllErrorHandler, entryForbiddenMiddleware, notFoundMiddleware, unauthorizedMiddleware, unauthorizedResourceMiddleware, badRequestMiddleware } from "./errorHandlers.js";
+import swaggerDocument from "./swagger-output.json" assert { type: "json" };
 import tokenRouter from './services/token/index.js';
 export const server = express();
 const PORT = 6868;
@@ -20,6 +22,7 @@ server.use(cors());
 server.use(express.json());
 server.use(bodyParser.urlencoded({ extended: false }));
 server.use(bodyParser.json());
+server.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 server.use("/api/v1_0/tweets/", tweetsRouter);
 server.use("/api/v1_0/tweets/roles", roleRouter);
 server.use("/api/v1_0/tweets/users", userRouter);

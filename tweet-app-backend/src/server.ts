@@ -5,6 +5,7 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import bodyParser from "body-parser"
+import swaggerUi from "swagger-ui-express"
 // IMPORT CORS
 import userRouter from "./services/users/index.js"
 import roleRouter from "./services/roles/index.js"
@@ -21,6 +22,7 @@ import {
   unauthorizedResourceMiddleware,
   badRequestMiddleware
 } from "./errorHandlers.js";
+import swaggerDocument from "./swagger-output.json" assert { type: "json" };
 
 // BASIC SERVER CREATION
 // REMEMBER TO UPDATE START SCRIPT IN PACKAGE JSON
@@ -35,6 +37,11 @@ server.use(cors());
 server.use(express.json());
 server.use(bodyParser.urlencoded({ extended: false }))
 server.use(bodyParser.json())
+server.use(
+  "/docs",
+  swaggerUi.serve,
+  swaggerUi.setup( swaggerDocument )
+);
 
 server.use("/api/v1_0/tweets/", tweetsRouter);
 server.use("/api/v1_0/tweets/roles", roleRouter);

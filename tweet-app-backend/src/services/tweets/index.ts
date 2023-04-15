@@ -10,6 +10,7 @@ import validations from "../../utils/validation/index.js";
 import { adminOnly, JwtMiddleware } from "../../utils/auth/jwt.js";
 import MessageFactory from "../../utils/kafka/message-client.js";
 import { IUser } from "../../types/schema-types.js";
+import swaggerUi from "swagger-ui-express"
 
 const { tweetValidationRules, validate } = validations;
 
