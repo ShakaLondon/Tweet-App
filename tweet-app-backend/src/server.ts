@@ -6,6 +6,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import bodyParser from "body-parser"
 import swaggerUi from "swagger-ui-express"
+import promBundle from "express-prom-bundle"
 // IMPORT CORS
 import userRouter from "./services/users/index.js"
 import roleRouter from "./services/roles/index.js"
@@ -37,6 +38,8 @@ server.use(cors());
 server.use(express.json());
 server.use(bodyParser.urlencoded({ extended: false }))
 server.use(bodyParser.json())
+
+// Add Swagger
 server.use(
   "/docs",
   swaggerUi.serve,
@@ -50,7 +53,18 @@ server.use("/api/v1_0/token", tokenRouter);
 // server.use("/api/v1.0/tweets/users/search", searchRouter);
 
 // MIDDLEWARES
-
+const metricsMiddleware = promBundle({
+  includeMethod: true, 
+  includePath: true, 
+  includeStatusCode: true, 
+  includeUp: true,
+  customLabels: {project_name: 'hello_world', project_type: 'test_metrics_labels'},
+  promClient: {
+      collectDefaultMetrics: {
+      }
+    }
+});
+server.use(metricsMiddleware)
 server.use(notFoundMiddleware);
 server.use(badRequestMiddleware);
 server.use(unauthorizedMiddleware);
