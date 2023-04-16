@@ -1,15 +1,12 @@
-import { faCircle, faDotCircle } from "@fortawesome/free-solid-svg-icons";
+import { faCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
-import { Card, Col, Container, Image, ListGroup, ListGroupItem, Row, } from "react-bootstrap";
+import { Card, Col, Image, ListGroup, Row } from "react-bootstrap";
 import { ProfileProps } from "src/types/app-state";
 import { ITweet, IUser } from "src/types/user-state";
 
 const TweetDeck = ({ tweets, profileUser }: ProfileProps) => {
 
-  // function regular(arg0: string): import("@fortawesome/fontawesome-svg-core").IconProp {
-  //   throw new Error("Function not implemented.");
-  // }
   const [getUserTweets, setUserTweets] = useState<ITweet[]>(tweets as ITweet[]);
   const [getProfileUser, setProfileUser] = useState<IUser>(profileUser as IUser);
   

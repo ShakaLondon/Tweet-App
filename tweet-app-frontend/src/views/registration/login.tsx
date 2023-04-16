@@ -1,6 +1,6 @@
 import { faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { ChangeEvent, FormEvent, useState } from "react";
+import { FormEvent, useState } from "react";
 import {
     Button,
     Container,
@@ -11,7 +11,6 @@ import {
   } from "react-bootstrap";
 import { useAppDispatch } from "src/redux/constants";
 import { userLogin } from "src/redux/users/app-slice";
-import authService from "../../axios/auth.service";
 import { ILoginUser } from "../../types/user-state";
   
   const LoginContainer = () => {

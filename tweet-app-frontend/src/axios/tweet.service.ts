@@ -1,5 +1,5 @@
 import axios from "axios";
-import { IPostTweet, ITweet } from "src/types/user-state";
+import { IPostTweet } from "src/types/user-state";
 import TokenService from "./auth-header";
 
 const API_URL = "http://localhost:6868/api/v1_0/tweets/";

@@ -4,11 +4,8 @@ import { ITweet, IUser } from "src/types/user-state";
 import CenterPanel from "./center-panel";
 import LeftPanel from "./left-panel";
 import RightPanel from "./right-panel";
-import tokenService from "../../axios/auth-header";
 import { useLocation, useParams } from "react-router-dom";
 import userService from "src/axios/user.service";
-// import { AppProps } from "src/types/app-state";
-import { useSelector } from "react-redux";
 import { RootState } from "src/redux/types/redux-state";
 import { useAppSelector } from "src/redux/constants";
 import authService from "src/axios/auth.service";
@@ -17,7 +14,6 @@ import tweetService from "src/axios/tweet.service";
 const ProfilePage = () => {
 
   const { loginID } = useParams();
-  const location = useLocation()
 
   const appState = useAppSelector((state: RootState) => state.appState)
   

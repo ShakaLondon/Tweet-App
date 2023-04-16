@@ -1,13 +1,9 @@
 import { useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { Navigate, useLocation } from "react-router";
-import authService from "../../axios/auth.service";
 import { IUser } from "../../types/user-state";
-import TokenService from "../../axios/auth-header";
 import LoginContainer from "./login";
 import SignUpContainer from "./sign-up";
-// import { AppProps } from "src/types/app-state";
-import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "src/redux/types/redux-state";
 import { logout } from "src/redux/users/app-slice";
 import { useAppDispatch, useAppSelector } from "src/redux/constants";
@@ -22,20 +18,17 @@ const RegisterPage = () => {
   const [getUser, setUser] = useState<IUser | null>(appState.user);
 
   useEffect(() => {
-    // const appState = useAppSelector((state: RootState) => state.appState)
     getVerify(appState.verified)
     setUser(appState.user)
   })
 
 
   if (( verify === true ) && getUser) {
-    // return redirect("/test")
     return <Navigate to={`/profile/${getUser?.loginID}`} />
   } else if (( verify === false ) && (getUser)) {
     console.log("why it logging out");
     dispatch(logout)
-    
-    // return redirect("/home")
+
     return <Navigate to="/home" />
   } else {
 

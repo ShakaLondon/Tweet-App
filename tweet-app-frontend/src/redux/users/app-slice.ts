@@ -2,12 +2,9 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import authService from 'src/axios/auth.service'
 import tokenService from 'src/axios/auth-header'
 import userService from 'src/axios/user.service'
-import { ISubmitUser, IUser } from 'src/types/user-state'
-import { store } from '../store'
+import { IUser } from 'src/types/user-state'
 import { RootState } from '../types/redux-state'
-// import type { RootState } from '../../app/store'
 
-// Define a type for the slice state
 interface IAppState {
   user: IUser | null
   token: string | null
@@ -29,7 +26,6 @@ interface IRegister {
     dateOfBirth?: string
   }
 
-// Define the initial state using that type
 const initialState: IAppState = {
   user: null,
   token: null,
@@ -73,7 +69,6 @@ export const checkCredentials = createAsyncThunk(
 
 export const appSlice = createSlice({
   name: 'users',
-  // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
     logout: state => {
@@ -82,9 +77,6 @@ export const appSlice = createSlice({
       state.token = null
       state.verified = false
     },
-  //   getCurrentUser: state => {
-  //     return state.user
-  // },
   },
   extraReducers: (builder) => {
     // Add reducers for additional action types here, and handle loading state as needed

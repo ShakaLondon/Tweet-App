@@ -1,6 +1,6 @@
 import { faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { ChangeEvent, FormEvent, useState } from "react";
+import { FormEvent, useState } from "react";
 import {
     Button,
     Container,
@@ -9,11 +9,9 @@ import {
     Row,
     Col,
   } from "react-bootstrap";
-import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { useAppDispatch } from "src/redux/constants";
-import appSlice, { userRegister } from "src/redux/users/app-slice";
-import authService from "../../axios/auth.service";
+import { userRegister } from "src/redux/users/app-slice";
 import { ISubmitUser } from "../../types/user-state";
   
   const SignUpContainer = () => {

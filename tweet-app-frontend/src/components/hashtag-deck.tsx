@@ -3,10 +3,6 @@ import { Col, Container, ListGroup, Row } from "react-bootstrap";
 
 const HashDeck = () => {
 
-  // function regular(arg0: string): import("@fortawesome/fontawesome-svg-core").IconProp {
-  //   throw new Error("Function not implemented.");
-  // }
-
   return (
     <ListGroup className="px-3 py-3">
       <ListGroup.Item>

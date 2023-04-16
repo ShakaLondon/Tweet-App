@@ -1,4 +1,4 @@
-import { configureStore, applyMiddleware, combineReducers } from '@reduxjs/toolkit'
+import { configureStore, combineReducers } from '@reduxjs/toolkit'
 import { persistReducer, persistStore } from 'redux-persist'
 import ThunkMiddleware from 'redux-thunk'
 import storageSession from 'reduxjs-toolkit-persist/lib/storage/session'

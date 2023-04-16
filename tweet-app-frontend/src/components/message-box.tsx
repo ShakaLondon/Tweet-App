@@ -1,8 +1,5 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { FormEvent, useEffect, useState } from "react";
-import { Button, Card, Container, FloatingLabel, Form } from "react-bootstrap";
-import { faCalendarAlt } from "@fortawesome/free-regular-svg-icons";
-// import { AppProps } from "src/types/app-state";
+import React, { FormEvent, useState } from "react";
+import { Button, Container, FloatingLabel, Form } from "react-bootstrap";
 import { IPostTweet, ITweet } from "src/types/user-state";
 import tweetService from "src/axios/tweet.service";
 
@@ -21,15 +18,12 @@ const MessageBox = () => {
     };
   
     const handleChange = (field: string, value: string) => {
-      // let target = e.target as HTMLInputElement
       console.log(getTweet);
-      // let name = target.name;
       setTweet({ ...getTweet, [field]: value });
     };
   
   return (
     <Container fluid className="flex-row my-3">
-    {/* <Card className="px-0 py-0 d-flex" id="message-box"> */}
     <Form onSubmit={handleSubmit}>
     <FloatingLabel
                       controlId="floatingTweet"

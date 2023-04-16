@@ -1,5 +1,4 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useEffect, useState } from "react";
 import { Card, Container } from "react-bootstrap";
 import { faCalendarAlt } from "@fortawesome/free-regular-svg-icons";
 import { ProfileProps } from "src/types/app-state";

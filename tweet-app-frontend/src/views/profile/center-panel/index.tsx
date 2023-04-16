@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Container } from "react-bootstrap";
-import { useSelector } from "react-redux";
 import MessageBox from "src/components/message-box";
 import ProfileCard from "src/components/profile-card";
 import { useAppSelector } from "src/redux/constants";
