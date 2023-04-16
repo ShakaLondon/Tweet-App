@@ -11,12 +11,6 @@ const doc = {
     schemes: ['http'],
     consumes: ['application/json'],
     produces: ['application/json'],
-    tags: [
-        {
-            "name": "User",
-            "description": "Endpoints"
-        }
-    ]
 }
 
 const outputFile = './swagger-output.json'
