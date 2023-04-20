@@ -1,7 +1,6 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { HomeTabProps } from "src/types/app-state";
-import { Node } from "typescript";
 
 const HomeTabs = ({ tabList }: HomeTabProps) => {
 

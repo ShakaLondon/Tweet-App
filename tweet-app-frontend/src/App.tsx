@@ -2,13 +2,11 @@ import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import './App.css';
 import HomePage from './views/home';
-import { Routes, Route, useLoaderData, useLocation } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import RegisterPage from "./views/registration";
 import * as dotenv from 'dotenv'
 import ProfilePage from "./views/profile";
 import { IUser } from "./types/user-state";
-import TokenService from "../src/axios/auth-header";
-import authService from "./axios/auth.service";
 import { useAppDispatch, useAppSelector } from "./redux/constants";
 import { RootState } from "./redux/types/redux-state";
 import { checkCredentials } from "./redux/users/app-slice";
@@ -17,21 +15,6 @@ function App() {
   const location = useLocation()
   const [verify, getVerify] = useState<boolean>();
   const [getUser, setUser] = useState<IUser | null>();
-
-  // const getVerification = async () => {
-  //   getVerify( await TokenService.checkCredentials() );
-  // }
-
-  // const getUserItem = (user: IUser) => {
-  //   console.log(user, "user passsed")
-  //   setUser( (state) => ({ state, ...user }) );
-  //   getVerify(true)
-  //   console.log(getUser)
-  // }
-
-  // const getUserStorage = async () => {
-  //   setUser( await TokenService.getUserItem() );
-  // }
 
   const dispatch = useAppDispatch()
 

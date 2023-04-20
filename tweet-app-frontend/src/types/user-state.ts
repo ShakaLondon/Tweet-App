@@ -10,10 +10,6 @@ export interface ISubmitUser extends ILoginUser {
     password?: string
     dateOfBirth?: string
     contactNumber?: string
-    // role?: Array<string>
-    // tweetList?: Array<string>
-    // createdAt?: number
-    // updatedAt?: number
   }
 
   export interface IUser extends ISubmitUser {
@@ -23,14 +19,6 @@ export interface ISubmitUser extends ILoginUser {
     updatedAt?: number
     token: string
   }
-
-  // export interface RegisterProps {
-  //   userItem?: (userItem: IUser) => void
-  // }
-
-  // export interface LoginProps {
-  //   userItem?: (userItem: IUser) => void
-  // }
 
   export interface IPostTweet {
     tweet: string;
