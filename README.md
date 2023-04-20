@@ -54,19 +54,19 @@ I used HTML, CSS, TYPESCRIPT, NODE, REACT, MONGODB, MONGOOSE, SWAGGER, PROMETHEU
 
 ## GENERATING SSH KEY FOR JENKINS 
 
-# Run container interactively as user
+##### Run container interactively as user
 ```docker exec -it jenkins bin/bash```
 
-# Create .ssh directory
+##### Create .ssh directory
 ```mkdir ~/.ssh && cd ~/.ssh```
 
-# Create ssh key
+##### Create ssh key
 ```ssh-keygen -t rsa -C "The access key for Jenkins"```
 
-# Add the public to authorized_keys file 
+##### Add the public to authorized_keys file 
 ```cat id_rsa.pub >> ~/.ssh/authorized_keys```
 
-# Copy the private key to clipboard
+##### Copy the private key to clipboard
 ```cat id_rsa```
 
 
