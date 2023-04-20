@@ -15,4 +15,4 @@ jenkins:
          password: ${JENKINS_ADMIN_PASSWORD}
 unclassified:
   location:
-    url: http://${ROUTER_IP}:8080/
+    url: http://${ROUTER_IP}:8080
