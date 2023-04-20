@@ -58,13 +58,13 @@ I used HTML, CSS, TYPESCRIPT, NODE, REACT, MONGODB, MONGOOSE, SWAGGER, PROMETHEU
 ```docker exec -it jenkins bin/bash```
 
 ##### Create .ssh directory
-```mkdir /.ssh && cd /.ssh```
+```mkdir .ssh && cd .ssh```
 
 ##### Create ssh key
 ```ssh-keygen -t rsa -C "The access key for Jenkins"```
 
 ##### Add the public to authorized_keys file 
-```cat id_rsa.pub >> ~/.ssh/authorized_keys```
+```cat id_rsa.pub >> /var/jenkins_home/.ssh/authorized_keys```
 
 ##### Copy the private key to clipboard
 ```cat id_rsa```
