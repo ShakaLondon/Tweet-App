@@ -28,7 +28,7 @@ public/node_modules/*
 /tweet-app-frontend/build/
 
 /tweet-app-backend/node_modules/
-/tweet-app-backend/docker/secrets
+/tweet-app-backend/docker-setup/secrets
 /confluent-plugins/confluentinc-connect-transforms-1.4.3/*
 /confluent-plugins/confluentinc-kafka-connect-json-schema-converter-7.3.3/*
 /confluent-plugins/debezium-debezium-connector-mongodb-2.0.1/*

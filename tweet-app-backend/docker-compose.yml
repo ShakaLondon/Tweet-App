@@ -134,8 +134,9 @@ services:
             CONNECT_MONGODB_USER: ${MONGODB_USER}
             CONNECT_MONGODB_PASSWORD: ${MONGODB_PASSWORD}
         volumes:
-            - ./docker:/tweet-app/utils
-            - ../confluent-plugins/dynamic-field/:/usr/local/share/kafka/plugins/
+            - ./docker-setup:/tweet-app/utils
+            - ../confluent-plugins:/usr/local/share/kafka/plugins/
+            # - ../confluent-plugins/dynamic-field:/usr/local/share/kafka/plugins/
 
     schema-registry:
         image: confluentinc/cp-schema-registry:latest
@@ -160,7 +161,7 @@ services:
             SCHEMA_REGISTRY_ACCESS_CONTROL_ALLOW_ORIGIN: '*'
             SCHEMA_REGISTRY_ACCESS_CONTROL_ALLOW_METHODS: 'GET,POST,PUT,OPTIONS'
         volumes:
-            - ./docker/schema-registry/connect-avro-standalone.properties:/etc/schema-registry/connect-avro-standalone.properties
+            - ./docker-setup/schema-registry/connect-avro-standalone.properties:/etc/schema-registry/connect-avro-standalone.properties
 
     rest-proxy:
         image: confluentinc/cp-kafka-rest:latest

@@ -1,13 +1,13 @@
 FROM mongo
 
-COPY /docker/mongo-kafka/config-replica.js /
-COPY /docker/mongo-kafka/scripts/.bashrc /data/db/.bashrc
-COPY /docker/mongo-kafka/requirements.txt /
+COPY /docker-setup/mongo-kafka/config-replica.js /
+COPY /docker-setup/mongo-kafka/scripts/.bashrc /data/db/.bashrc
+COPY /docker-setup/mongo-kafka/requirements.txt /
 
 RUN mkdir /tweet-app
-ADD /docker/mongo-kafka/source-connector /tweet-app/utils/mongo-kafka/source-connector
-ADD /docker/mongo-kafka/sink-connector /tweet-app/utils/mongo-kafka/sink-connector
-ADD /docker/mongo-kafka/scripts /usr/local/bin
+ADD /docker-setup/mongo-kafka/source-connector /tweet-app/utils/mongo-kafka/source-connector
+ADD /docker-setup/mongo-kafka/sink-connector /tweet-app/utils/mongo-kafka/sink-connector
+ADD /docker-setup/mongo-kafka/scripts /usr/local/bin
 RUN chmod +x /usr/local/bin/cx
 RUN chmod +x /usr/local/bin/del
 RUN chmod +x /usr/local/bin/kc
