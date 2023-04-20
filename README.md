@@ -58,7 +58,7 @@ I used HTML, CSS, TYPESCRIPT, NODE, REACT, MONGODB, MONGOOSE, SWAGGER, PROMETHEU
 ```docker exec -it jenkins bin/bash```
 
 ##### Create .ssh directory
-```mkdir ~/.ssh && cd ~/.ssh```
+```mkdir /.ssh && cd /.ssh```
 
 ##### Create ssh key
 ```ssh-keygen -t rsa -C "The access key for Jenkins"```
