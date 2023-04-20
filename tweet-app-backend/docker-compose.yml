@@ -14,7 +14,6 @@ services:
             - DB_USER=${MONGODB_USER}
             - DB_PASSWORD=${MONGODB_PASSWORD}
             - DB_NAME=${MONGODB_DATABASE}
-            - DB_PORT=${MONGODB_DOCKER_PORT}
         depends_on:
             - zookeeper
             - broker
@@ -179,7 +178,37 @@ services:
             KAFKA_REST_BOOTSTRAP_SERVERS: http://broker:9092
             KAFKA_REST_LISTENERS: http://rest-proxy:8082
             KAFKA_REST_SCHEMA_REGISTRY_URL: http://schema-registry:8081
-
+    jenkins:
+        image: jenkins/jenkins:lts
+        container_name: jenkins
+        privileged: true
+        user: root
+        restart: always
+        build:
+            context: .
+            dockerfile: jenkins.Dockerfile
+        environment:
+            - JENKINS_ADMIN_ID=${JENKINS_ADMIN_ID}
+            - JENKINS_ADMIN_PASSWORD=${JENKINS_ADMIN_PASSWORD}
+            - ROUTER_IP=${ROUTER_IP}
+        ports:
+            - "8080:8080"
+            - "50000:50000"
+        volumes:
+            - ~/jenkins:/var/jenkins_home
+            - /var/run/docker.sock:/var/run/docker.sock
+            - /usr/local/bin/docker-setup:/usr/local/bin/docker
+            # - ./jenkins-setup:/var/jenkins_home
+    agent:
+        image: jenkins/ssh-agent:jdk11
+        privileged: true
+        user: root
+        container_name: agent
+        expose:
+            - 22
+        environment:
+            - JENKINS_AGENT_SSH_PUBKEY=ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQChwvvK6PCSDpvNQSeGDFXej5d3HgA+M0tRwL8Ws5oYM3wig7wL7RQ0aO8suR+tLhlyTKf0kAnAYp8faEUrHenD+WTsSMg7mvDL1Du7cDVNn+a+Z8+xUSLow0R2KpXk8JbNrsT/JByYCkHER6S+TMjUtvj7JySPh14FtoJ6C4uyfCakP+MlQkCMQZUjsDu+SGkCZdpDN7nV5eZxrHKP+/NsQpthYVvVTpT2/SpFDuUHtAOP8FzAZW4xYEO223TTxItQkO8Y3URVZVG+VgimBpHMTKaMvnDazhxdgf9oqpg7eUZXTfmlAE5slPQu4Pxqmmaxg4VJpsinXGaj8SlmFKR3SzTwPvKIIku+8aa231/D0H3x5HARq9ifKmpLK3fcobE69eeS1eP/JpYbF6F1Q/kjtdV2sXsTMR7L6ScQNXNPEiuyuZhyY4M6er9JxYAryzR6vgVxMMIEsnSt46px0pG+sGKIFjrV9O34/NybPcN2kyMH7W767tLjbgUqV0b/Hgk= m_2172612@AMBGB000067
+            
 networks:
     tweet-app-network:
         driver: bridge

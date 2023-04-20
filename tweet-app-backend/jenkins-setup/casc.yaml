@@ -1,0 +1,18 @@
+jenkins:
+  authorizationStrategy:
+    globalMatrix:
+      permissions:
+        # - "Overall/Administer:admin"
+        # - "Overall/Read:authenticated"
+        - "USER:Overall/Read:anonymous"
+        # - "GROUP:Overall/Administer:authenticated"
+        - "USER:Overall/Administer:${JENKINS_ADMIN_ID}"
+  securityRealm:
+    local:
+      allowsSignup: false
+      users:
+       - id: ${JENKINS_ADMIN_ID}
+         password: ${JENKINS_ADMIN_PASSWORD}
+unclassified:
+  location:
+    url: http://${ROUTER_IP}:8080/
