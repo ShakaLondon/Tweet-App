@@ -14,15 +14,6 @@
 
 I used HTML, CSS, TYPESCRIPT, NODE, REACT, MONGODB, MONGOOSE, SWAGGER, PROMETHEUS, SONARQUBE,  and EXPRESS to create this app.
 
-## LIVE DEMO
-
-https://papaya-pilot.vercel.app/main
-
-## SCREENSHOTS
-
-#### Tweet App Home Page
-![Papaya Homepage Screenshot](https://res.cloudinary.com/shakalondon/image/upload/v1646088865/Papaya/Home-Page.png)
-
 
 ## BEFORE YOU START
 
@@ -33,8 +24,8 @@ https://papaya-pilot.vercel.app/main
 ## AVAILABLE SCRIPTS
 
 ##### Run the complete app on Docker:
-###### From the /tweet-app-backend run
 
+```cd tweet-app-backend/```
 ```yarn build```
 ```./run.sh```
 
@@ -48,6 +39,34 @@ https://papaya-pilot.vercel.app/main
 ###### The page will reload when you make changes.
 ###### You may also see any lint errors in the console.
 
-```npm test```
+```yarn test```
+
+## RUNNING BACKEND APP INDEPENDANTLY 
+
+```cd tweet-app-backend/```
+```yarn build```
+```yarn start```
+
+## RUNNING BACKEND APP INDEPENDANTLY 
+
+```cd tweet-app-frontend/```
+```yarn start```
+
+## GENERATING SSH KEY FOR JENKINS 
+
+#Run container interactively as user
+```docker exec -it jenkins bin/bash```
+
+#Create .ssh directory
+```mkdir ~/.ssh && cd ~/.ssh```
+
+#Create ssh key
+```ssh-keygen -t rsa -C "The access key for Jenkins"```
+
+#Add the public to authorized_keys file 
+```cat id_rsa.pub >> ~/.ssh/authorized_keys```
+
+#Copy the private key to clipboard
+```cat id_rsa```
 
 
